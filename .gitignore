@@ -1,2 +1,5 @@
-# BMAD generated outputs
+# BMAD generated output
 _bmad-output/
+
+# Claude Code local metadata
+.claude/
