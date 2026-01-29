@@ -1,8 +1,29 @@
-const todos = [];
+let todos = [];
 
 const todoInput = document.getElementById('todo-input');
 const addBtn = document.getElementById('add-btn');
 const todoList = document.getElementById('todo-list');
+
+const saveTodos = () => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+};
+
+const loadTodos = () => {
+    const raw = localStorage.getItem('todos');
+    if (raw === null) {
+        return;
+    }
+    try {
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) {
+            console.warn('localStorage "todos" was not an array, discarding.');
+            return;
+        }
+        todos = parsed.filter((item) => typeof item === 'string');
+    } catch (e) {
+        console.warn('localStorage "todos" contained invalid JSON, discarding.', e);
+    }
+};
 
 const addItem = () => {
     const text = todoInput.value.trim();
@@ -12,11 +33,13 @@ const addItem = () => {
     todos.push(text);
     todoInput.value = '';
     renderList();
+    saveTodos();
 };
 
 const removeItem = (index) => {
     todos.splice(index, 1);
     renderList();
+    saveTodos();
 };
 
 const renderList = () => {
@@ -45,3 +68,6 @@ todoInput.addEventListener('keypress', (e) => {
         addItem();
     }
 });
+
+loadTodos();
+renderList();
