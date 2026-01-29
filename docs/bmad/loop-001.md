@@ -83,28 +83,33 @@ Build the smallest working to-do list UI with add/remove in memory only.
 
 ## Analyze
 
-_To be completed after implementation._
+### What worked:
+- The app behaved exactly as expected when adding and removing items.
+- The interface was simple and easy to understand without explanation.
+- The manual test steps were sufficient to catch obvious issues.
 
-- What worked:
-- What didn't:
-- Unexpected issues:
+### What didn’t:
+- Nothing significant for this initial version.
+
+### Observations:
+- The current approach works well for a small list but would likely need refinement as features are added.
+- Removing items works fine now, but future features may require a more robust way to identify items.
 
 ---
 
 ## Decide
 
 ### Decisions locked in:
-- Three-file structure: index.html, style.css, app.js
-- Array-based in-memory storage
-- Index-based removal
-- No persistence until explicitly requested
+- Keep the simplest three-file structure: `index.html`, `style.css`, `app.js`
+- Keep the app intentionally minimal: add/remove items only
+- Keep state in-memory only (refresh clears the list)
 
 ### Explicitly deferred:
-- Edit existing items
 - Mark items complete/incomplete
 - Local storage persistence
-- Drag-and-drop reordering
+- Editing items
+- Reordering / drag-and-drop
 - Filtering/search
 
 ### Goal for Loop 002:
-_To be determined based on Analyze results — likely add "mark complete" toggle or local storage persistence._
+Add **local storage persistence** so the list survives a page refresh (no other feature changes).
