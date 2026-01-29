@@ -101,15 +101,16 @@ Persist to-do items in localStorage so the list survives a page refresh.
 ## Decide
 
 ### Decisions locked in:
-- `localStorage` key `"todos"`, JSON-serialized string array.
-- Save on every mutation, load once on startup.
-- `try/catch` + type check + filter for defensive loading.
-- Console warning on corrupt data, silent recovery to empty state.
+- Persist todos in `localStorage` under the `"todos"` key as a JSON array of strings.
+- Fail-safe behavior: invalid storage results in an empty list instead of a crash.
+- Keep the app minimal: add/remove only (no other feature changes in Loop 002).
 
 ### Explicitly deferred:
-- Mark items complete/incomplete
+- Mark complete/incomplete
 - Editing items
-- Reordering / drag-and-drop
+- Reordering
 - Filtering/search
-- Storage versioning or migration
+- Any backend sync
 
+### Goal for Loop 003:
+Push to GitHub and deploy as a static site (GitHub Pages).
